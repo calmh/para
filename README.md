@@ -6,8 +6,7 @@ Parallellizes stdin processing to a number of child processes.
 Install
 -------
 
-Grab the binary from [the relases
-page](https//github.com/calmh/para/releases).
+Grab the binary from the [relases page](https://github.com/calmh/para/releases).
 
 Examples
 --------
@@ -22,7 +21,9 @@ $ para -children=4 "wc -l" < /usr/share/dict/words
   151689
 ```
 
-Perform a massively parallell grep. The `-quiet` flag supresses `Warning: exit status 1 (child exited with error)` for each of the `grep`s that exit without finding the search string.
+Perform a massively parallell grep. The `-quiet` flag suppresses
+`Warning: exit status 1 (child exited with error)` for each of the
+`grep`s that exit without finding the search string.
 
 ```
 $ para -children=64 -quiet "grep earde" < /usr/share/dict/words 
@@ -33,7 +34,9 @@ unbearded
 ```
 
 Split a file into eight (the default number of children) pieces.
-`$PARAIDX` is set to the child number for each child process.
+`$PARAIDX` is set to the child number for each child process. Note
+though that this is not the same sequential split as `split` does but a
+random(-ish) spread of lines into files.
 
 ```
 $ para "cat > part.\$PARAIDX" < /usr/share/dict/words ; ls -l part.*
